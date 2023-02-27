@@ -5,14 +5,16 @@ import java.util.List;
 import kodlama.io.rentACar.business.reguests.UpdateBrandRequest;
 import kodlama.io.rentACar.business.responses.GetByIdBrandResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import kodlama.io.rentACar.business.abstracts.BrandService;
 import kodlama.io.rentACar.business.reguests.CreateBrandRequest;
 import kodlama.io.rentACar.business.responses.GetAllBrandsResponse;
-import kodlama.io.rentACar.entities.concretes.Brand;
+
+
+import javax.validation.Valid;
 
 @RestController //annotation
 @RequestMapping("/api/brands")
@@ -32,7 +34,7 @@ public class BrandsController {
 	
 	@PostMapping()
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public void add(@RequestBody  CreateBrandRequest createBrandRequest) {
+	public void add(@RequestBody @Valid CreateBrandRequest createBrandRequest) {
 		this.brandService.add(createBrandRequest);
 	}
 
